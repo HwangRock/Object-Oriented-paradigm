@@ -8,6 +8,7 @@ class Todo extends React.Component {
     super(props);
     this.state = { item: props.item, readOnly:true };
     this.delete=props.delete;
+    this.update=props.update;
   }
 
   deleteEventHandler =()=>{
@@ -15,7 +16,6 @@ class Todo extends React.Component {
   }
 
   offReadOnlyMode =()=>{
-    console.log("Event!", this.state.teadOnly);
     this.setState({readOnly:false},()=>{
       console.log("ReadOnly?",this.state.readOnly);
     });
@@ -24,20 +24,21 @@ class Todo extends React.Component {
   enterKeyEventHandler=(e)=>{
     if(e.key==="ENTER"){
       this.setState({readOnly:true})
+      this.update(this.state.item);
     }
   }
 
   editEventHandler=(e)=>{
     const thisItem=this.state.item;
-    this.Item.title=e.target.value;
+    thisItem.title=e.target.value;
     this.setState({item:thisItem});
   }
 
   checkboxEventHandler=(e)=>{
-    console.log("check box event call");
     const thisItem=this.state.item;
     thisItem.done=thisItem.done?false:true;
-    this.setState({item:thisItem});
+    this.setState({readOnly:true});
+    this.update(this.state.item);
   }
 
   render() {

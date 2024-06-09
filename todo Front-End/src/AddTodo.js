@@ -11,17 +11,16 @@ class AddTodo extends React.Component {
   onInputChange = (e) => {
     const thisItem = this.state.item;
     thisItem.title = e.target.value;
-    this.setState({ item: thisItem });  // setStage -> setState
-    console.log(thisItem);
+    this.setState({ item: thisItem });
   }
 
   onButtonClick = () => {
     this.add(this.state.item);
-    this.setState({ item: { title: "" } });  // setStage -> setState
+    this.setState({ item: { title: "" } });
   }
 
   enterKeyEventHandler = (e) => {
-    if (e.key === 'Enter') {  // '==' -> '==='
+    if (e.key == 'Enter') {  
       this.onButtonClick();
     }
   }
@@ -32,7 +31,7 @@ class AddTodo extends React.Component {
         <Grid container>
           <Grid xs={11} md={11} item style={{ paddingRight: 16 }}>
             <TextField
-              placeholder="Add Todo here"  // placehoder -> placeholder
+              placeholder="Add Todo here" 
               fullWidth
               onChange={this.onInputChange}
               value={this.state.item.title}
@@ -44,7 +43,7 @@ class AddTodo extends React.Component {
               fullWidth
               color="secondary"
               variant='outlined'
-              onClick={this.onButtonClick}  // onclick -> onClick
+              onClick={this.onButtonClick}
             >
               +
             </Button>
